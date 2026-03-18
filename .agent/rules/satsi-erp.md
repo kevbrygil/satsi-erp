@@ -106,7 +106,7 @@ export default ComponentName;
 
 ### Styling with NativeWind/Tailwind CSS
 
-- Use **NativeWind** (Tailwind CSS classes) via `className` prop
+- Use Tailwind CSS classes via `className` prop
 - Use predefined colors from `tailwind.config.js`:
   - `app-primary` - Main brand green
   - `app-secondary` - Secondary green
@@ -119,12 +119,7 @@ export default ComponentName;
 ### State Management
 
 - Use **React Context API** for global state
-- Contexts are in `src/contexts/`:
-  - `authContext` - Authentication & user session
-  - `cardContext` - Card management
-  - `dialogContext` - Modal/dialog control
-  - `storageContext` - Local storage
-  - `toastContext` - Toast notifications
+- Contexts are in `src/contexts/`
 - Create custom hooks in `src/hooks/` for reusable logic
 - Custom hook naming: `useFeatureName.ts` (camelCase with `use` prefix)
 
@@ -137,7 +132,7 @@ export default ComponentName;
 
 ### Navigation
 
-- Use Expo Router's `useRouter()` for navigation
+- Use Router's `useRouter()` for navigation
 - **Route Group Exclusion:** Never include folder names in parentheses in path strings. If TypeScript flags an error due to generated types, use a type assertion (e.g., `router.push('/path' as any)`) instead of including the group names.
 - Deep links follow pattern: `flexdondecredito://ScreenName/params`
 - Route files match URL paths
