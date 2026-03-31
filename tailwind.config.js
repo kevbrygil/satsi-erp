@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./src/components/**/*.{js,ts,tsx}', "./src/**/*.{js,jsx,ts,tsx}", "./src/**/**/**/*.{js,jsx,ts,tsx}"],
-
-  presets: [require('nativewind/preset')],
   theme: {
     extend: {
       fontFamily: {

@@ -1,10 +1,13 @@
-module.exports = function (api) {
+export default function (api) {
   api.cache(true);
 
-  const removeConsole = process.env.NODE_ENV === 'production'
+  const removeConsole = process.env.NODE_ENV === 'production';
 
   return {
-    presets: [],
+    presets: [
+      ['@babel/preset-env', { targets: 'defaults' }],
+      ['@babel/preset-react', { runtime: 'automatic' }],
+    ],
     plugins: [
       [
         'module-resolver',
@@ -15,14 +18,14 @@ module.exports = function (api) {
             '@src': './src',
             '@assets': './src/assets',
             '@components': './src/components',
+            '@interfaces': './src/interfaces',
             '@contexts': './src/contexts',
             '@hooks': './src/hooks',
             '@utils': './src/utils',
           },
         },
       ],
-      'react-native-reanimated/plugin',
       ...(removeConsole ? ['transform-remove-console'] : []),
     ],
   };
-};
+}

@@ -104,14 +104,12 @@ const ComponentName = ({ prop1, prop2, disabled = false }: ComponentNameProps) =
 export default ComponentName;
 ```
 
-### Styling with NativeWind/Tailwind CSS
+### Styling with Tailwind CSS
 
 - Use Tailwind CSS classes via `className` prop
 - Use predefined colors from `tailwind.config.js`:
   - `app-primary` - Main brand green
-  - `app-secondary` - Secondary green
-  - `app-gray-*` - Gray variations
-  - `yellow-primary`, `green-light`, etc.
+  - `app-secondary` - Secondary green, etc.
 - Use predefined fonts: `font-nunito`, `font-nunitosans`
 - **Never use inline styles** unless absolutely necessary
 - Keep className strings clean and readable
@@ -176,13 +174,13 @@ export default ComponentName;
 
 ### ESLint
 
-- Using `eslint-config-expo` with Prettier integration
-- Run `npx expo-doctor` to check for issues
+- Using `eslint` with Prettier integration
+- Using command `npm run lint` for verify
 
 ### Imports
 
 - Use path aliases: `@/src/...` for absolute imports from src
-- Order imports: React → React Native → Third-party → Local
+- Order imports: React → Local
 - Group imports by type with blank lines between groups
 
 ---
@@ -192,34 +190,24 @@ export default ComponentName;
 ### Development
 
 ```bash
-npx expo start --clear
-npx expo run:android
+npm run dev
+npm run preview
 ```
 
 ### Build Commands
 
 ```bash
-# Local APK
-eas build -p android --profile preview --local
-
-# iOS via EAS
-eas build --platform ios
-
-# Local Android without EAS
-cd androidbuild && ./prebuild.sh && ./buildandroid.sh apk
+# Local
+npm run build
 ```
 
 ### Environment Configuration
 
-- `APP_NAME` - Brand identifier (flexdondecredito, flexdondecreditocolombia)
 - `NODE_ENV` - Environment (qa, prod)
-- Config files in `appconfig/` directory
 
 ## Before Committing
 
 1. Run `npm run lint` to fix and check issues
-2. Run `npm run format` to format code
-3. Run `npm run doctor` to check project health
 
 ---
 
@@ -254,13 +242,12 @@ Agent: "To commit your changes, run these commands:"
 
 ## ⚠️ Important Conventions
 
-1. **Never commit** `node_modules/`, `.expo/`, build artifacts
+1. **Never commit** `node_modules/`, `.agent/`, build artifacts
 2. **Always run** ESLint and Prettier before committing
 3. **Create interfaces** for all new component props
 4. **Follow existing patterns** in the codebase
 5. **Use existing components** from `src/components/` when possible
 6. **Minimal Comments:** Do NOT add comments (inline or block) when implementing or modifying code, unless explicitly requested. Avoid documenting logic with comments as per user preference.
-7. **Test thoroughly** on both Android and iOS
 8. **Update README.md** when adding new screens or features
 9. **Components:** PascalCase (`ButtonGreenPrimary`)
 10. **Files:** kebab-case for utilities (`format-date.ts`), PascalCase for components (`ButtonGreenPrimary.tsx`)
@@ -268,7 +255,6 @@ Agent: "To commit your changes, run these commands:"
 12. **Interfaces:** PascalCase with descriptive names (`ButtonGreenPrimaryProps`)
 13. **Variables:** camelCase (`isLoading`, `userEmail`)
 14. **No Auto-Comments:** The AI must not add explanatory comments or annotations to the code unless specifically asked to document a particular section.
-15. **Decoupled Screens:** Route files in `src/app/` MUST be simple wrappers using `SafeAreaView`. UI/Logic belongs in `src/components/Screens/`. **Crucial:** Always use `edges={['left', 'right', 'bottom']}` on `SafeAreaView` when a header is present to prevent excessive top spacing.
 16. **Utility Reuse:** Always check `src/utils/` for existing helper functions before implementing new formatting or processing logic. Reusable functions (e.g., date, currency, or string formatting) should be placed in this directory to ensure consistency across the application.
 
 ---
@@ -277,7 +263,7 @@ Agent: "To commit your changes, run these commands:"
 
 When adding a new feature:
 
-- [ ] Create screen in appropriate route group (`(public)` or `(protected)`)
+- [ ] Create screen in appropriate route group (`public` or `protected`)
 - [ ] Define TypeScript interfaces in `src/Interfaces/`
 - [ ] Create reusable components in `src/components/[Category]/`
 - [ ] Add API service if needed in `src/api/`
@@ -285,7 +271,7 @@ When adding a new feature:
 - [ ] Update context if global state needed
 - [ ] Add E2E tests in `e2e/`
 - [ ] Update README.md with screen documentation
-- [ ] Test on Android emulator and iOS simulator
+- [ ] Test on Web browser
 
 ---
 
